@@ -14,6 +14,9 @@ const AuthPage = () => {
   const navigate = useNavigate();
   console.log("user", user);
   console.log("Error", error);
+  const toggleLogin = () => {
+    setIsLogin(!isLogin);
+  };
   useEffect(() => {
     if (user) {
       dispatch({
@@ -27,11 +30,10 @@ const AuthPage = () => {
   }, [user]);
 
   return (
-    <main className="mt-20 overflow-y-scroll">
-      <section className="h-28 max-w-4xl mx-auto">
-        {isLogin ? <Login /> : <Register />}
+    <main className="mt-[65px] h-[70vh] pt-20 flex flex-col gap-10 items-center">
+      <section className="max-h-[150px] max-w-4xl mx-auto transition-all">
+        <Login login={isLogin} setIsLogin={toggleLogin} />
       </section>
-      <button onClick={() => setIsLogin(!isLogin)}>login / Register</button>
     </main>
   );
 };
@@ -41,16 +43,28 @@ export default AuthPage;
 export async function action({ request }) {
   const formData = await request.formData();
   const userDetails = Object.fromEntries(formData);
-  console.log(userDetails);
-  try {
-    const res = await axios.post(
-      "http://localhost:5005/api/v1/users/login",
-      userDetails
-    );
-    const user = await res.data;
-    console.log("user", user);
-    return user;
-  } catch (err) {
-    throw new Error(err.response.data.message);
+  if (userDetails.Username) {
+    try {
+      const res = await axios.post(
+        "http://localhost:5005/api/v1/users/register",
+        userDetails
+      );
+      const user = await res.data;
+      return user;
+    } catch (err) {
+      throw new Error(err);
+    }
+  } else {
+    try {
+      const res = await axios.post(
+        "http://localhost:5005/api/v1/users/login",
+        userDetails
+      );
+      const user = await res.data;
+      console.log("user", user);
+      return user;
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }

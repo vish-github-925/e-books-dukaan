@@ -4,8 +4,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  return <section className="h-[300px]">
-  <Form
+  return   <Form
     method="post"
     className="flex flex-col gap-5 items-center border-dotted border-red-500 border p-10
     "
@@ -52,6 +51,5 @@ const Register = () => {
 
     <button type="submit">Login</button>
   </Form>
-</section>
 };
 export default Register;

@@ -1,7 +1,6 @@
 import { useCartItems } from "../../context/CartContextProvider";
 import PlaceOrder from "./PlaceOrder";
-import { Fragment } from "react";
-const PriceDetails = () => {
+const PriceDetails = ({ toggleModal }) => {
   const cartItems = useCartItems();
   let TotalPrice = 0;
   let Discount = 0;
@@ -23,7 +22,7 @@ const PriceDetails = () => {
     TotalPriceAfterDiscount = TotalPrice;
   }
   return (
-    <div className="flex flex-col gap-10 items-center">
+    <div className="flex flex-col gap-10 items-center fixed top-[140px] right-10">
       <section className="text-lg w-[500px] h-[300px] rounded-lg bg-slate-50 py-4 px-6 flex flex-col space-y-4">
         <h2
           className="font-semibold text-lg
@@ -84,7 +83,7 @@ const PriceDetails = () => {
           ""
         )}
       </section>
-      <PlaceOrder />
+      <PlaceOrder toggleModal={toggleModal} />
     </div>
   );
 };

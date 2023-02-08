@@ -1,12 +1,11 @@
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
-import BookComponent from "../components/Book/BookComponent";
 import DisplayBooks from "../components/Book/DisplayBooks";
 const BookById = () => {
   const book = useLoaderData();
   //   console.log(book);
   return (
-    <div className="grid place-content-center h-[100vh]">
+    <div className="grid place-content-center h-[80.5vh]">
       <DisplayBooks books={book} />
     </div>
   );

@@ -8,7 +8,6 @@ type CartContextProps = {
 };
 
 const cartItemsInLocalStorage = localStorage.getItem("vishva-carts");
-console.log(cartItemsInLocalStorage);
 
 let initalCartItems: null | Array<Object>;
 if (cartItemsInLocalStorage) {
@@ -36,7 +35,10 @@ function cartReducer(cartItems, action) {
       const book = action.book;
       let itemPresent = false;
       for (let i = 0; i < cartItems.length; i++) {
-        if (book.id === cartItems[i].id) {
+        if (
+          book.id === cartItems[i].id &&
+          book.category === cartItems[i].category
+        ) {
           itemPresent = true;
           // cartItems[i].quantity = cartItems[i].quantity + 1;
           // console.log(cartItems);
@@ -47,7 +49,7 @@ function cartReducer(cartItems, action) {
         const newCartItems = [];
         for (let i = 0; i < cartItems.length; i++) {
           if (book.id === cartItems[i].id) {
-            const newItem = cartItems[i];
+            const newItem = { ...cartItems[i] };
             newItem.quantity = cartItems[i].quantity + 1;
             newCartItems.push(newItem);
           } else {
@@ -57,12 +59,51 @@ function cartReducer(cartItems, action) {
 
         localStorage.setItem("vishva-carts", JSON.stringify(newCartItems));
         return newCartItems;
+      } else {
+        localStorage.setItem("vishva-carts", JSON.stringify(cartItems));
+        console.log(cartItems);
+        return [...cartItems, { ...action.book, quantity: 1 }];
       }
-      localStorage.setItem("vishva-carts", JSON.stringify(cartItems));
-      return [...cartItems, { ...action.book, quantity: 1 }];
     }
     case "delete_from_cart": {
-      return [...cartItems];
+      localStorage.setItem("vishva-carts", JSON.stringify([]));
+      return [];
+    }
+    case "remove_cart_item": {
+      const newItems = [];
+      cartItems.forEach((item) => {
+        if (item.id === action.id && item.category === action.category) {
+        } else {
+          newItems.push(item);
+        }
+      });
+      return newItems;
+    }
+    case "increase_quantity": {
+      const newItems = [];
+      cartItems.forEach((item) => {
+        if (item.id === action.id && item.category === action.category) {
+          const book = { ...item };
+          book.quantity = item.quantity + 1;
+          newItems.push(book);
+        } else {
+          newItems.push(item);
+        }
+      });
+      return newItems;
+    }
+    case "decrease_quantity": {
+      const newItems = [];
+      cartItems.forEach((item) => {
+        if (item.id === action.id && item.category === action.category) {
+          const book = { ...item };
+          book.quantity = item.quantity - 1;
+          newItems.push(book);
+        } else {
+          newItems.push(item);
+        }
+      });
+      return newItems;
     }
     default: {
       throw new Error("Unknown action");
