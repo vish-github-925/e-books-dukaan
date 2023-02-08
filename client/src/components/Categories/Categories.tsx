@@ -1,20 +1,20 @@
 import CategoryItem from "./CategoryItem";
 const categories: string[] = [
-  "Adventure stories",
+  "Adventure",
   "Crime",
   "Classics",
-  "Fantasy",
   "Horror",
   "Humor",
-  "Fiction",
 ];
 const Categories = () => {
   const categoriesContent = categories.map((category) => (
     <CategoryItem category={category} key={category} />
   ));
   return (
-    <div className="flex h-20 max-w-3xl mx-auto bg-white text-black font-bold space-x-5 items-center justify-around">
-      {categoriesContent}
+    <div className="h-24 w-[100%] mb-[40px] bg-white text-black font-bold fixed left-70 top-[68px] z-20 flex justify-center">
+      <div className="flex max-w-4xl mx-auto px-4 justify-between gap-x-20  bg-white text-black font-bold items-center">
+        {categoriesContent}
+      </div>
     </div>
   );
 };

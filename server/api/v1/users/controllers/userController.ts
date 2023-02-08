@@ -3,10 +3,10 @@ import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 
 const login = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
   // check if all fields are entered
-  if (!username || !email || !password) {
+  if (!email || !password) {
     res.status(400);
     throw new Error("Please enter all fields");
   }
@@ -22,8 +22,8 @@ const login = asyncHandler(async (req, res) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).json({
       id: user._id,
-      username,
       email,
+      username: user.username,
     });
   } else {
     res.status(400);
@@ -53,7 +53,7 @@ const register = asyncHandler(async (req, res) => {
   res.status(200).json({
     id: user._id,
     email,
-    username,
+    username
   });
 });
 export { login, register };

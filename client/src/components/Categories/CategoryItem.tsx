@@ -5,9 +5,15 @@ const CategoryItem = ({ category }: { category: string }) => {
   return (
     <Link
       to={`/category/${categoryItem}`}
-      className="hover:text-appcolor cursor-pointer"
+      className="hover:text-appcolor cursor-pointer flex flex-col items-center"
     >
-      {category}
+      <img
+        src={`/images/category-icons/${category}.svg`}
+        alt="Horror"
+        height={24}
+        width={24}
+      />
+      <h3 className="text-sm">{category}</h3>
     </Link>
   );
 };

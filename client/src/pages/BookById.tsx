@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import BookComponent from "../components/Book/BookComponent";
 import DisplayBooks from "../components/Book/DisplayBooks";
 const BookById = () => {
   const book = useLoaderData();
-//   console.log(book);
+  //   console.log(book);
   return (
-    <div>
+    <div className="grid place-content-center h-[100vh]">
       <DisplayBooks books={book} />
     </div>
   );
@@ -14,7 +15,7 @@ export default BookById;
 
 export async function loader({ params }) {
   const resp = await axios.get(
-    `http://localhost:5005/api/v1/books/${params.id}`
+    `http://localhost:5005/api/v1/books/${params.category}/${params.id}`
   );
   const book = await resp.data;
   return book;

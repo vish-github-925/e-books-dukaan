@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import BookComponent from "./components/Book/BookComponent";
 import DisplayBooks from "./components/Book/DisplayBooks";
 import Categories from "./components/Categories/Categories";
+import { useUserContext } from "./context/UserContextProvider";
 // import { queryClient } from "./main";
 
 type Book = {
@@ -17,22 +18,21 @@ type Book = {
 
 const HomePage = () => {
   const books = useLoaderData() as Book[];
+  const user = useUserContext();
   // console.log(books);
   return (
-    <div>
-      <div>
-        <Categories />
+    <main className="mt-20">
+      <Categories />
+      <div className="mt-40">
+        <h1 className="text-4xl font-bold text-appcolor text-center">
+          {user.username && <span>Hi {user.username},</span>} Welcome to the
+          Books Dukaan
+        </h1>
+        <div className="mt-4 mx-auto max-w-4xl">
+          <DisplayBooks books={books} />
+        </div>
       </div>
-      <h1
-        className="text-4xl text-center my-6
-      "
-      >
-        Welcome to the Books Dukaan
-      </h1>
-      <div className="h-[400px] max-w-4xl mx-auto flex flex-wrap gap-6 mt-6">
-        <DisplayBooks books={books} />
-      </div>
-    </div>
+    </main>
   );
 };
 

@@ -12,9 +12,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import HomePage from "./HomePage";
 import Navbar from "./components/Layout/Navbar";
 import CategoriesPage from "./pages/CategoriesPage";
-import LoginPage from "./pages/LoginPage";
+import AuthPage from "./pages/AuthPage";
 import CartPage from "./pages/CartPage";
-import RegisterPage from "./pages/RegisterPage";
+import LogoutPage from "./pages/LogoutPage";
 import BookById from "./pages/BookById";
 import CartContextProvider from "./context/CartContextProvider";
 
@@ -22,6 +22,9 @@ import CartContextProvider from "./context/CartContextProvider";
 import { loader as homeLoader } from "./HomePage";
 import { loader as categoriesLoader } from "./pages/CategoriesPage";
 import { loader as bookByIdLoader } from "./pages/BookById";
+import { action as loginPageAction } from "./pages/AuthPage";
+import HomeErrorPage from "./pages/HomeErrorPage";
+import UserContextProvider from "./context/UserContextProvider";
 
 // react-query -- queryClient
 export const queryClient = new QueryClient();
@@ -35,6 +38,7 @@ const browserRouter = createBrowserRouter([
         index: true,
         element: <HomePage />,
         loader: homeLoader,
+        errorElement: <HomeErrorPage />,
       },
       {
         path: "category/:categoryName",
@@ -42,17 +46,18 @@ const browserRouter = createBrowserRouter([
         loader: categoriesLoader,
       },
       {
-        path: "book/:id",
+        path: "book/:category/:id",
         element: <BookById />,
         loader: bookByIdLoader,
       },
       {
         path: "login",
-        element: <LoginPage />,
+        element: <AuthPage />,
+        action: loginPageAction,
       },
       {
-        path: "register",
-        element: <RegisterPage />,
+        path: "logout",
+        element: <LogoutPage />,
       },
       {
         path: "cart",
@@ -64,9 +69,11 @@ const browserRouter = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <CartContextProvider>
-      <RouterProvider router={browserRouter} />
-      {/* <ReactQueryDevtools /> */}
-    </CartContextProvider>
+    <UserContextProvider>
+      <CartContextProvider>
+        <RouterProvider router={browserRouter} />
+        {/* <ReactQueryDevtools /> */}
+      </CartContextProvider>
+    </UserContextProvider>
   </React.StrictMode>
 );
