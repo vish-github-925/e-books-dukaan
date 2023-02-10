@@ -11,10 +11,12 @@ type BookProps = {
 };
 
 type Book = {
+  id: number;
   title: string;
   author: string;
   price: number;
-  discount: number;
+  discount?: number;
+  specialDeal?: string;
   category: string;
 };
 

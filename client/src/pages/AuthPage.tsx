@@ -5,9 +5,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Login from "../components/Auth/Login";
 
+interface User {
+  id: number;
+  username: string;
+  email: string;
+}
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const user = useActionData();
+  const user = useActionData() as User;
   const error = useRouteError();
   const dispatch = useUserContextDispatch();
   const navigate = useNavigate();

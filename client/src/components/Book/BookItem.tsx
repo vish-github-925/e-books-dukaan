@@ -5,10 +5,12 @@ type BookProps = {
 };
 
 type Book = {
+  id: number;
   title: string;
   author: string;
   price: number;
-  discount: number;
+  specialDeal?: string;
+  discount?: number;
   category: string;
 };
 const BookItem = ({ book }: BookProps) => {
