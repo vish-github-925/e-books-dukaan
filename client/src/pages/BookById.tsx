@@ -14,7 +14,7 @@ export default BookById;
 
 export async function loader({ params }) {
   const resp = await axios.get(
-    `http://localhost:5005/api/v1/books/${params.category}/${params.id}`
+    `https://e-books-dukaan-backend.onrender.com/api/v1/books/${params.category}/${params.id}`
   );
   const book = await resp.data;
   return book;

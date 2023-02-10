@@ -24,7 +24,7 @@ export default CategoriesPage;
 
 export async function loader({ params }) {
   const resp = await axios.get(
-    `http://localhost:5005/api/v1/books/category/${params.categoryName}`
+    `https://e-books-dukaan-backend.onrender.com/api/v1/books/category/${params.categoryName}`
   );
   const books = await resp.data;
   return books;

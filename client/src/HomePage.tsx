@@ -40,7 +40,7 @@ const HomePage = () => {
 export default HomePage;
 
 export async function loader() {
-  const res = await axios.get("http://localhost:5005/api/v1/books");
+  const res = await axios.get("https://e-books-dukaan-backend.onrender.com/api/v1/books");
   const books = await res.data;
   console.log("from loader", books);
   return books;

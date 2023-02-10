@@ -4,7 +4,6 @@ import { useUserContextDispatch } from "../context/UserContextProvider";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Login from "../components/Auth/Login";
-import Register from "../components/Auth/Register";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -44,7 +43,7 @@ export async function action({ request }) {
   if (userDetails.Username) {
     try {
       const res = await axios.post(
-        "http://localhost:5005/api/v1/users/register",
+        "https://e-books-dukaan-backend.onrender.com/api/v1/users/register",
         userDetails
       );
       const user = await res.data;
@@ -55,7 +54,7 @@ export async function action({ request }) {
   } else {
     try {
       const res = await axios.post(
-        "http://localhost:5005/api/v1/users/login",
+        "https://e-books-dukaan-backend.onrender.com/api/v1/users/login",
         userDetails
       );
       const user = await res.data;
