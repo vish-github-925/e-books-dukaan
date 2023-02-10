@@ -7,8 +7,8 @@ const CategoriesPage = () => {
   const params = useParams();
   const books = useLoaderData();
   return (
-    <main className="mt-20 max-w-4xl mx-auto">
-      <h3 className="text-2xl flex justify-start p-4 font-semibold italic text-left sticky top-[68px] z-30 bg-white">
+    <main className="pt-20 max-w-4xl pb-10 mx-auto dark:bg-[#191919] dark:text-[#c7c7c7]">
+      <h3 className="text-2xl flex justify-start p-4 font-semibold italic text-left sticky top-[68px] z-30 bg-white dark:bg-[#191919] dark:text-[#c7c7c7]">
         Category &gt; {params.categoryName}
       </h3>
       <section

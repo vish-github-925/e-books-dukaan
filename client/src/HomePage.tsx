@@ -22,10 +22,10 @@ const HomePage = () => {
   // console.log(books);
 
   return (
-    <main className="mt-20">
+    <main className="py-10 dark:bg-[#191919] dark:text-[#c7c7c7]">
       <Categories />
-      <div className="mt-40">
-        <h1 className="text-4xl font-bold text-appcolor text-center">
+      <div className="mt-40 dark:bg-[#191919]">
+        <h1 className="text-4xl font-bold text-appcolor dark:bg-[#191919] text-center">
           {user.username && <span> Hi {user.username},</span>} Welcome to the
           Books Dukaan
         </h1>

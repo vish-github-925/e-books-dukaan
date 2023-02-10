@@ -9,7 +9,8 @@ const PlaceOrder = ({ toggleModal }) => {
   return (
     <div className="flex gap-4">
       <button
-        className="bg-orange-400 px-6 py-3 rounded-lg hover:bg-orange-500 hover:text-white"
+        className="bg-orange-400 px-6 py-3 rounded-lg hover:bg-orange-500 hover:text-white
+        dark:text-white"
         onClick={() => {
           if (user.username) {
             console.log("Congrats shopping finished");
@@ -22,7 +23,8 @@ const PlaceOrder = ({ toggleModal }) => {
         Place your order
       </button>
       <button
-        className="bg-red-400 px-6 py-3 rounded-lg hover:bg-red-500 hover:text-white"
+        className="bg-red-400 px-6 py-3 rounded-lg hover:bg-red-500 hover:text-white
+        dark:text-white"
         onClick={() => {
           dispatch({
             type: "delete_from_cart",

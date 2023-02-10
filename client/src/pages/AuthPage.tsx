@@ -30,10 +30,8 @@ const AuthPage = () => {
   }, [user]);
 
   return (
-    <main className="mt-[65px] h-[70vh] pt-20 flex flex-col gap-10 items-center">
-      <section className="max-h-[150px] max-w-4xl mx-auto transition-all">
-        <Login login={isLogin} setIsLogin={toggleLogin} />
-      </section>
+    <main className="max-h-[87vh] flex flex-col gap-10 items-center pb-[22rem]">
+      <Login login={isLogin} setIsLogin={toggleLogin} />
     </main>
   );
 };

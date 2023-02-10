@@ -20,11 +20,11 @@ const Login = ({ login, setIsLogin }) => {
   };
   if (login) {
     return (
-      <section className="h-[70vh]">
+      <section className="pt-[8rem]">
         <Form
           method="post"
           className="flex flex-col gap-5 items-center rounded-lg 
-        border-l-appcolor shadow-lg shadow-slate-500 p-10"
+        border-l-appcolor shadow-lg shadow-slate-500 p-10 dark:bg-[#272727] dark:text-[#c7c7c7]"
         >
           <h1 className="text-center text-xl font-bold italic text-appcolor flex items-center gap-1 justify-center">
             Login <AiOutlineLogin />
@@ -62,10 +62,10 @@ const Login = ({ login, setIsLogin }) => {
     );
   } else {
     return (
-      <section>
+      <section className="pt-[8rem]">
         <Form
           method="post"
-          className="flex flex-col gap-5 items-center rounded-lg 
+          className="flex flex-col gap-5 items-center rounded-lg dark:bg-[#272727] dark:text-[#c7c7c7] 
       border-l-appcolor shadow-lg shadow-slate-500 px-10 py-3"
         >
           <h1 className="text-center text-xl font-bold italic text-appcolor flex items-center justify-center gap-2">

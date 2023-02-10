@@ -1,19 +1,31 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useCartItems } from "../../context/CartContextProvider";
 import { useUserContext } from "../../context/UserContextProvider";
+import { useEffect, useState } from "react";
 const Navbar = () => {
   const cartItems = useCartItems();
   const user = useUserContext();
-  const params = useParams();
-  console.log(params);
+  const [darkTheme, setDarkTheme] = useState(false);
+  const toggleTheme = () => {
+    setDarkTheme((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (darkTheme) {
+      document.body.classList.add("dark");
+      document.body.classList.add("dark:bg-[#191919]");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [darkTheme]);
   return (
-    <main>
-      <nav className="h-15 bg-appcolor fixed top-0 left-0 text-white text-xl mb-10 z-20 w-full">
-        <ul className="max-w-4xl m-auto flex items-center justify-around p-4 gap-x-16">
+    <main className="dark:bg-[#191919] dark:text-[#c7c7c7]">
+      <nav className="h-15 bg-appcolor fixed top-0 left-0 text-white text-xl  z-20 w-full dark:bg-red-20">
+        <ul className="max-w-4xl m-auto flex items-center justify-around p-4 gap-x-16 ">
           <li className="flex-1">
             <div className="text-3xl">
-              <Link to="/" className="italic">
+              <Link to="/" className="italic font-bold">
                 VishCart
               </Link>
             </div>
@@ -47,11 +59,18 @@ const Navbar = () => {
               Buy
             </Link>
           </li>
+          <li className="bg-red-50 w-8 h-5 rounded-xl flex justify-start dark:justify-end transition ease-in delay-150 dark:bg-[#272727]">
+            <button
+              onClick={toggleTheme}
+              className="h-5 w-5 bg-black rounded-full dark:self-end dark:bg-white"
+            ></button>
+          </li>
         </ul>
       </nav>
+
       <Outlet />
       <footer
-        className="w-full bg-slate-300  mt-10 h-20 flex items-center justify-center font-semibold italic text-slate-700
+        className="w-full bg-slate-300 h-20 flex items-center justify-center font-semibold italic text-slate-700 dark:bg-[#272727] dark:text-[#c7c7c7] 
       "
       >
         <h1>Made with ❤ by Vishnuvardhan Uppunuthula</h1>

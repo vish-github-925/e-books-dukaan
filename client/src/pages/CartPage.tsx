@@ -22,7 +22,7 @@ const CartPage = () => {
   }, [openOrCloseModal]);
   return (
     <main
-      className={`flex flex-col min-h-screen relative px-20 py-5 gap-y-10 mt-[4rem] pt-20`}
+      className={`flex flex-col  relative dark:bg-[#202020] dark:text-[#c7c7c7] px-20 py-5 gap-y-10 pt-[7rem] pb-[14.4rem]`}
     >
       {/* Display items */}
       {/* float row */}

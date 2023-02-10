@@ -3,7 +3,12 @@ import { useCartItemsDispatch } from "../../context/CartContextProvider";
 const DisplayCartItem = ({ item }) => {
   const dispatch = useCartItemsDispatch();
   return (
-    <div className="h-[200px] px-16 py-5 w-full bg-slate-50 rounded-sm hover:shadow-blue-500 hover:shadow cursor-pointer transition-all">
+    <div
+      className="h-[200px] px-16 py-5 w-full bg-slate-50 rounded-sm dark:bg-[#191919] dark:text-[#c7c7c7] hover:shadow-blue-500
+      dark:hover:border-b-2
+    dark:hover:border-b-slate-400
+    dark:hover:shadow-none hover:shadow cursor-pointer transition-all"
+    >
       <h1 className="font-semibold italic text-lg">Title: {item.title}</h1>
       <h2 className="text-lg font-semibold">
         Price:{" "}

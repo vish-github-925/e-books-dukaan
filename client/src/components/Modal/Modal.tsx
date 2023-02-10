@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 const Modal = ({ content, toggleModal }) => {
   const navigate = useNavigate();
   return (
-    <div className="h-[75vh] w-full bg-white absolute px-36 py-20 flex flex-col items-center z-10 blur-none">
-      <div className="font-bold text-4xl text-teal-700">{content}</div>
+    <div className="h-[75vh] w-full bg-white absolute px-36 py-20 flex flex-col dark:bg-[#373737] dark:text-[#c7c7c7] items-center z-10 blur-none">
+      <div className="font-bold text-4xl text-teal-700 dark:text-teal-500">
+        {content}
+      </div>
       <AiOutlineCloseCircle
         type="button"
         onClick={toggleModal}

@@ -22,11 +22,11 @@ const PriceDetails = ({ toggleModal }) => {
     TotalPriceAfterDiscount = TotalPrice;
   }
   return (
-    <div className="flex flex-col gap-10 items-center fixed top-[140px] right-10">
-      <section className="text-lg w-[500px] h-[300px] rounded-lg bg-slate-50 py-4 px-6 flex flex-col space-y-4">
+    <div className="flex flex-col gap-10 items-center fixed top-[140px] right-10 dark:bg-[#202020]">
+      <section className="text-lg w-[500px] h-[300px] rounded-lg bg-slate-50 py-4 px-6 flex flex-col dark:bg-[#191919] dark:text-[#c7c7c7] space-y-4">
         <h2
           className="font-semibold text-lg
-       text-slate-400 items-start border border-b-slate-400  py-3"
+       text-slate-400 items-start border-b border-b-slate-400  py-3"
         >
           PRICE DETAILS
         </h2>
