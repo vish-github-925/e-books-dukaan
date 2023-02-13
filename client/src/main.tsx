@@ -72,7 +72,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <UserContextProvider>
       <CartContextProvider>
         <RouterProvider router={browserRouter} />
-        {/* <ReactQueryDevtools /> */}
       </CartContextProvider>
     </UserContextProvider>
   </React.StrictMode>

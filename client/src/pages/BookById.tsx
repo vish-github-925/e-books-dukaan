@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import DisplayBooks from "../components/Book/DisplayBooks";
+import { API } from "../utils/api_usage";
+
 const BookById = () => {
   const book = useLoaderData();
   //   console.log(book);
   return (
-    <div className="grid place-content-center h-[80.5vh]">
+    <div className="grid place-content-center min-h-[76vh]">
       <DisplayBooks books={book} />
     </div>
   );
@@ -14,7 +16,7 @@ export default BookById;
 
 export async function loader({ params }) {
   const resp = await axios.get(
-    `https://e-books-dukaan-backend.onrender.com/api/v1/books/${params.category}/${params.id}`
+    `${API}/books/${params.category}/${params.id}`
   );
   const book = await resp.data;
   return book;

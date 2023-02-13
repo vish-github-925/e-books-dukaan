@@ -1,9 +1,10 @@
-import { ReactElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useActionData, useRouteError } from "react-router-dom";
 import { useUserContextDispatch } from "../context/UserContextProvider";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Login from "../components/Auth/Login";
+import { API } from "../utils/api_usage";
 
 interface User {
   id: number;
@@ -13,11 +14,9 @@ interface User {
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const user = useActionData() as User;
-  const error = useRouteError();
   const dispatch = useUserContextDispatch();
   const navigate = useNavigate();
-  console.log("user", user);
-  console.log("Error", error);
+
   const toggleLogin = () => {
     setIsLogin(!isLogin);
   };
@@ -34,7 +33,7 @@ const AuthPage = () => {
   }, [user]);
 
   return (
-    <main className="max-h-[87vh] flex flex-col gap-10 items-center pb-[22rem]">
+    <main className="min-h-[76vh] flex flex-col gap-10 items-center justify-center">
       <Login login={isLogin} setIsLogin={toggleLogin} />
     </main>
   );
@@ -47,10 +46,7 @@ export async function action({ request }) {
   const userDetails = Object.fromEntries(formData);
   if (userDetails.Username) {
     try {
-      const res = await axios.post(
-        "https://e-books-dukaan-backend.onrender.com/api/v1/users/register",
-        userDetails
-      );
+      const res = await axios.post(`${API}/users/register`, userDetails);
       const user = await res.data;
       return user;
     } catch (err) {
@@ -58,10 +54,7 @@ export async function action({ request }) {
     }
   } else {
     try {
-      const res = await axios.post(
-        "https://e-books-dukaan-backend.onrender.com/api/v1/users/login",
-        userDetails
-      );
+      const res = await axios.post(`${API}/users/login`, userDetails);
       const user = await res.data;
       console.log("user", user);
       return user;

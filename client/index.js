@@ -1,15 +1,14 @@
-import axios from "axios";
+// let a  = 10
+// let b = 20
+// let c = a + b
+// console.log(c)
+// a = 1000
+// console.log(c)
 
-const req = async () => {
-  try {
-    const res = await axios.post("http://localhost:5005/api/v1/users/login", {
-      email: "v@g.com",
-      password: "1234",
-    });
-    const data = await res.data;
-    console.log("data", data);
-  } catch (err) {
-    console.log(err);
-  }
-};
-req();
+let a0 = 1
+let a1 = 2
+let a2 = a0 + a1
+console.log(a2)
+a0 = 20
+a2 = a0 + a1
+console.log(a2)

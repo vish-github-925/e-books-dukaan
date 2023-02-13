@@ -4,7 +4,7 @@ const DisplayCartItem = ({ item }) => {
   const dispatch = useCartItemsDispatch();
   return (
     <div
-      className="h-[200px] px-16 py-5 w-full bg-slate-50 rounded-sm dark:bg-[#191919] dark:text-[#c7c7c7] hover:shadow-blue-500
+      className="h-[200px] px-16 py-5 w-full bg-slate-200 rounded-sm dark:bg-[#191919] dark:text-[#c7c7c7] hover:shadow-blue-500
       dark:hover:border-b-2
     dark:hover:border-b-slate-400
     dark:hover:shadow-none hover:shadow cursor-pointer transition-all"

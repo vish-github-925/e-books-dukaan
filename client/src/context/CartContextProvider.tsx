@@ -61,7 +61,6 @@ function cartReducer(cartItems, action) {
         return newCartItems;
       } else {
         localStorage.setItem("vishva-carts", JSON.stringify(cartItems));
-        console.log(cartItems);
         return [...cartItems, { ...action.book, quantity: 1 }];
       }
     }

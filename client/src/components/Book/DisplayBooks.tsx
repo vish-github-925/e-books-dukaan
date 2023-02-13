@@ -9,7 +9,8 @@ const DisplayBooks = ({ books }) => {
   ));
   return (
     <main
-      className="flex flex-wrap items-center p-4 justify-between gap-y-6 max-w-4xl mx-auto
+      className="flex flex-wrap py-10 items-center justify-center gap-6 max-w-lg
+       sm:max-w-xl lg:max-w-4xl  mx-auto
   "
     >
       {displayBooks}

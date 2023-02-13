@@ -1,13 +1,11 @@
 import { useUserContext } from "../../context/UserContextProvider";
-import { useNavigate } from "react-router-dom";
 import { useCartItemsDispatch } from "../../context/CartContextProvider";
 
 const PlaceOrder = ({ toggleModal }) => {
   const user = useUserContext();
-  const navigate = useNavigate();
   const dispatch = useCartItemsDispatch();
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 pb-10 md:sticky md:top-[480px] md:left-0">
       <button
         className="bg-orange-400 px-6 py-3 rounded-lg hover:bg-orange-500 hover:text-white
         dark:text-white"

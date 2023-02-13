@@ -2,33 +2,34 @@ import DisplayItems from "../components/Cart/DisplayItems";
 import PriceDetails from "../components/Cart/PriceDetails";
 import { useState, useEffect } from "react";
 import Modal from "../components/Modal/Modal";
-import { useUserContext } from "../context/UserContextProvider";
 import { useCartItems } from "../context/CartContextProvider";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 const CartPage = () => {
   const [openOrCloseModal, setOpenOrCloseModal] = useState(false);
 
-  const user = useUserContext();
   const cartItems = useCartItems();
   const toggleModal = () => {
     setOpenOrCloseModal(!openOrCloseModal);
   };
   useEffect(() => {
     if (openOrCloseModal) {
+      document.body.scrollTop = 0;
+      window.scrollTo({ top: 0, behavior: "smooth" });
       document.body.style.overflowY = "hidden";
     } else {
+      document.body.scrollTop = 0;
       document.body.style.overflowY = "scroll";
     }
   }, [openOrCloseModal]);
   return (
     <main
-      className={`flex flex-col  relative dark:bg-[#202020] dark:text-[#c7c7c7] px-20 py-5 gap-y-10 pt-[7rem] pb-[14.4rem]`}
+      className={`max-w-4xl mx-auto flex flex-col dark:bg-[#202020] dark:text-[#c7c7c7] px-20 gap-y-10 pt-10`}
     >
       {/* Display items */}
       {/* float row */}
       {cartItems?.length > 0 ? (
         <div
-          className={`flex flex-row relative ${
+          className={`flex flex-col lg:flex-row gap-x-16 relative ${
             openOrCloseModal ? "backdrop-blur-3xl" : ""
           }`}
         >

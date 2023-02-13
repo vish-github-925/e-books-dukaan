@@ -3,9 +3,9 @@ import { useLoaderData } from "react-router-dom";
 import DisplayBooks from "./components/Book/DisplayBooks";
 import Categories from "./components/Categories/Categories";
 import { useUserContext } from "./context/UserContextProvider";
-import { useEffect, useState } from "react";
-// import { queryClient } from "./main";
-
+import { useNavigation } from "react-router-dom";
+import BooksSkeleton from "./components/skeleton/BooksSkeleton";
+import { API } from "./utils/api_usage";
 type Book = {
   title: string;
   id: number;
@@ -17,31 +17,36 @@ type Book = {
 };
 
 const HomePage = () => {
-  const books = useLoaderData() as Book[];
+  let books = useLoaderData() as Book[];
   const user = useUserContext();
-  // console.log(books);
+  const navigation = useNavigation();
 
-  return (
-    <main className="py-10 dark:bg-[#191919] dark:text-[#c7c7c7]">
-      <Categories />
-      <div className="mt-40 dark:bg-[#191919]">
-        <h1 className="text-4xl font-bold text-appcolor dark:bg-[#191919] text-center">
-          {user.username && <span> Hi {user.username},</span>} Welcome to the
-          Books Dukaan
-        </h1>
-        <div className="mt-4 mx-auto max-w-4xl">
+  if (navigation.state === "loading") {
+    return <BooksSkeleton title="Loading" />;
+  } else if (navigation.state === "submitting") {
+    return <BooksSkeleton title="Submitting" />;
+  } else {
+    return (
+      <main className="max-w-4xl sm:max-w-xl lg:max-w-4xl  mx-auto dark:bg-[#191919] dark:text-[#c7c7c7] ">
+        <div className="hidden md:inline">
+          <Categories />
+        </div>
+        <div className="dark:bg-[#191919]">
+          <h1 className="text-4xl lg:text-6xl  font-bold text-appcolor dark:bg-[#191919] text-center pt-10">
+            {user?.username && <span> Hi {user.username},</span>} Welcome to the
+            Books Dukaan
+          </h1>
           <DisplayBooks books={books} />
         </div>
-      </div>
-    </main>
-  );
+      </main>
+    );
+  }
 };
 
 export default HomePage;
 
 export async function loader() {
-  const res = await axios.get("https://e-books-dukaan-backend.onrender.com/api/v1/books");
+  const res = await axios.get(`${API}/books`);
   const books = await res.data;
-  console.log("from loader", books);
   return books;
 }

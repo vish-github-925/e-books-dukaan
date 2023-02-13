@@ -25,14 +25,14 @@ const BookItem = ({ book }: BookProps) => {
           {book.specialDeal ? (
             <span
               className="px-2 py-1 rounded-lg
-         bg-teal-500 text-white text-xs absolute right-6 z-10"
+         bg-teal-500 text-white text-xs absolute right-6 z-[2]"
             >
               Special Deal
             </span>
           ) : (
             <span
               className="px-2 py-1 rounded-lg
-         bg-[#13005A] text-white text-xs absolute right-6 z-10"
+         bg-[#13005A] text-white text-xs absolute right-6 z-[2]"
             >
               Limited Stock
             </span>

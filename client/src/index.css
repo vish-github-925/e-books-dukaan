@@ -3,4 +3,5 @@
 @tailwind components;
 
 body {
+    overflow-x: hidden;
 }
