@@ -46,8 +46,9 @@ const HomePage = () => {
 export default HomePage;
 
 export async function loader() {
-  console.log("Home page", API)
-  const res = await axios.get(`${API}/books`);
+  const res = await axios.get(
+    `https://e-books-dukaan-backend.onrender.com/api/v1/books`
+  );
   const books = await res.data;
   return books;
 }

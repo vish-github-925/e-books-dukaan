@@ -46,7 +46,10 @@ export async function action({ request }) {
   const userDetails = Object.fromEntries(formData);
   if (userDetails.Username) {
     try {
-      const res = await axios.post(`${API}/users/register`, userDetails);
+      const res = await axios.post(
+        `https://e-books-dukaan-backend.onrender.com/api/v1/users/register`,
+        userDetails
+      );
       const user = await res.data;
       return user;
     } catch (err) {
@@ -54,7 +57,10 @@ export async function action({ request }) {
     }
   } else {
     try {
-      const res = await axios.post(`${API}/users/login`, userDetails);
+      const res = await axios.post(
+        `https://e-books-dukaan-backend.onrender.com/api/v1/users/login`,
+        userDetails
+      );
       const user = await res.data;
       console.log("user", user);
       return user;
