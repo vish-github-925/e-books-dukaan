@@ -46,6 +46,7 @@ const HomePage = () => {
 export default HomePage;
 
 export async function loader() {
+  console.log("Home page", API)
   const res = await axios.get(`${API}/books`);
   const books = await res.data;
   return books;

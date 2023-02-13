@@ -24,6 +24,7 @@ const CategoriesPage = () => {
 export default CategoriesPage;
 
 export async function loader({ params }) {
+  console.log("categories page", API);
   const resp = await axios.get(`${API}/books/category/${params.categoryName}`);
   const books = await resp.data;
   return books;
